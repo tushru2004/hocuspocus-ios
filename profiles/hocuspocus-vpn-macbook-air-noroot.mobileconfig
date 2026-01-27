@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>PayloadCertificateFileName</key>
+            <string>client.p12</string>
+            <key>PayloadContent</key>
+            <data>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</data>
+            <key>PayloadDescription</key>
+            <string>VPN client certificate</string>
+            <key>PayloadDisplayName</key>
+            <string>Hocuspocus VPN Client Cert</string>
+            <key>PayloadIdentifier</key>
+            <string>com.hocuspocus.vpn.client.cert</string>
+            <key>PayloadType</key>
+            <string>com.apple.security.pkcs12</string>
+            <key>PayloadUUID</key>
+            <string>4876A5CE-8164-414A-87AF-EAD88A72F769</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>Password</key>
+            <string>hocuspocus</string>
+        </dict>
+        <dict>
+            <key>PayloadDisplayName</key>
+            <string>Hocuspocus VPN</string>
+            <key>PayloadIdentifier</key>
+            <string>com.hocuspocus.vpn.config</string>
+            <key>PayloadType</key>
+            <string>com.apple.vpn.managed</string>
+            <key>PayloadUUID</key>
+            <string>15A07995-B557-469C-A068-D2F38370CBC3</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>UserDefinedName</key>
+            <string>Hocuspocus VPN</string>
+            <key>VPNType</key>
+            <string>IKEv2</string>
+            <key>IKEv2</key>
+            <dict>
+                <key>RemoteAddress</key>
+                <string>35.210.225.36</string>
+                <key>RemoteIdentifier</key>
+                <string>35.210.225.36</string>
+                <key>LocalIdentifier</key>
+                <string>macbook-air</string>
+                <key>AuthenticationMethod</key>
+                <string>Certificate</string>
+                <key>PayloadCertificateUUID</key>
+                <string>4876A5CE-8164-414A-87AF-EAD88A72F769</string>
+                <key>CertificateType</key>
+                <string>RSA</string>
+                <key>ServerCertificateIssuerCommonName</key>
+                <string>Hocuspocus VPN CA</string>
+                <key>EnablePFS</key>
+                <true/>
+            </dict>
+        </dict>
+    </array>
+    <key>PayloadDisplayName</key>
+    <string>Hocuspocus VPN macOS</string>
+    <key>PayloadIdentifier</key>
+    <string>com.hocuspocus.vpn.macos.noroot</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>9E94CA10-F790-494B-BD87-4CAA079221B2</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>
