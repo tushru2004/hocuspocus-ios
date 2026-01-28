@@ -173,21 +173,44 @@ kubectl logs -n hocuspocus deployment/mitmproxy -c location-poller --tail=10
 1. **Developer certificate not trusted** (most common)
    - iPhone: Settings → General → VPN & Device Management → Trust developer cert
 
-2. **"The identity used to sign the executable is no longer valid"**
+2. **Keychain locked (SSH sessions)** - When running tests via SSH, the macOS keychain may be locked
+   - **Fix:** Unlock keychain before running tests:
+     ```bash
+     security unlock-keychain -p "YOUR_PASSWORD" ~/Library/Keychains/login.keychain-db
+     ```
+   - **Optional:** Extend keychain lock timeout (2 hours):
+     ```bash
+     security set-keychain-settings -t 7200 -u ~/Library/Keychains/login.keychain-db
+     ```
+
+3. **WDA was uninstalled** - Appium may uninstall WDA on test failures if `clearSystemFiles: true`
+   - This removes the trusted certificate from the iPhone
+   - **Fix:** We set `clearSystemFiles: false` in test configs to prevent this
+   - If it happens, re-trust the cert: iPhone → Settings → General → VPN & Device Management → Trust
+
+4. **"The identity used to sign the executable is no longer valid"**
    - Certificate mismatch - rebuild WDA in Xcode (Cmd+Shift+K to clean, then Cmd+U)
 
-3. **"The file couldn't be opened because it doesn't exist"**
+5. **"The file couldn't be opened because it doesn't exist"**
    - Wrong scheme selected (IntegrationApp instead of WebDriverAgentRunner)
    - In Xcode: Select **WebDriverAgentRunner** scheme, then Cmd+U
 
-4. **Provisioning issues**
+6. **Provisioning issues**
    - In Xcode: Signing & Capabilities → Select Team → Let Xcode manage
 
-**Full rebuild:**
+**Full rebuild (after unlocking keychain):**
 ```bash
-open ~/.appium/node_modules/appium-xcuitest-driver/node_modules/appium-webdriveragent/WebDriverAgent.xcodeproj
-# Select WebDriverAgentRunner scheme, your Team, iPhone as destination
-# Press Cmd+U
+# Unlock keychain first (required for SSH sessions)
+security unlock-keychain -p "YOUR_PASSWORD" ~/Library/Keychains/login.keychain-db
+
+# Build WDA
+cd ~/.appium/node_modules/appium-xcuitest-driver/node_modules/appium-webdriveragent
+xcodebuild -project WebDriverAgent.xcodeproj -scheme WebDriverAgentRunner \
+  -destination "id=YOUR_DEVICE_UDID" build-for-testing -allowProvisioningUpdates \
+  DEVELOPMENT_TEAM=YOUR_TEAM_ID CODE_SIGN_IDENTITY="Apple Development"
+
+# Then trust the certificate on iPhone:
+# Settings → General → VPN & Device Management → Trust
 ```
 
 ### Error: "Maximum App ID limit reached"

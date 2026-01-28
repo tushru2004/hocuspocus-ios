@@ -44,7 +44,7 @@ class TestSmoke:
             options.udid = os.getenv("IOS_UDID", "00008020-0004695621DA002E")
             options.set_capability("appium:xcodeOrgId", os.getenv("IOS_XCODE_ORG_ID", "QG9U628JFD"))
             options.set_capability("appium:xcodeSigningId", os.getenv("IOS_XCODE_SIGNING_ID", "Apple Development"))
-            options.set_capability("appium:updatedWDABundleId", os.getenv("IOS_WDA_BUNDLE_ID", "com.hocuspocus.WebDriverAgentRunner"))
+            options.set_capability("appium:updatedWDABundleId", os.getenv("IOS_WDA_BUNDLE_ID", "com.tushru2004.WebDriverAgentRunner"))
             use_prebuilt = os.getenv("USE_PREBUILT_WDA", "true").lower() == "true"
             options.set_capability("appium:usePrebuiltWDA", use_prebuilt)
             # Keep WDA installed even if a session fails

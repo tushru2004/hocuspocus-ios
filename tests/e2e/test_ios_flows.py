@@ -152,7 +152,7 @@ class TestIOSProxyFlows:
             # These settings survive Appium reinstalls (no need to reconfigure Xcode)
             options.set_capability("appium:xcodeOrgId", os.getenv("IOS_XCODE_ORG_ID", "QG9U628JFD"))  # Apple Team ID
             options.set_capability("appium:xcodeSigningId", os.getenv("IOS_XCODE_SIGNING_ID", "Apple Development"))
-            options.set_capability("appium:updatedWDABundleId", os.getenv("IOS_WDA_BUNDLE_ID", "com.hocuspocus.WebDriverAgentRunner"))
+            options.set_capability("appium:updatedWDABundleId", os.getenv("IOS_WDA_BUNDLE_ID", "com.tushru2004.WebDriverAgentRunner"))
 
             # After fresh Appium install, run once with: USE_PREBUILT_WDA=false make test-e2e
             # This builds and installs WDA. Subsequent runs use prebuilt (faster).
@@ -164,7 +164,9 @@ class TestIOSProxyFlows:
             options.set_capability("appium:wdaLaunchTimeout", 120000)
             options.set_capability("appium:wdaConnectionTimeout", 120000)
             options.set_capability("appium:commandTimeouts", {"default": int(os.getenv("APPIUM_CMD_TIMEOUT_MS", "60000"))})
-            options.set_capability("appium:clearSystemFiles", True)
+            # IMPORTANT: Do NOT set clearSystemFiles=True - it causes WDA to be uninstalled on failure,
+            # which removes the trusted developer certificate and requires manual re-trust on iPhone
+            options.set_capability("appium:clearSystemFiles", False)
 
             # Set default safe location for real device (doesn't work on iOS 17+, but doesn't hurt)
             logging.info("📍 Attempting to set default GPS location (may not work on iOS 17+)")
