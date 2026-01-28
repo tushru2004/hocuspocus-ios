@@ -21,6 +21,10 @@ install-wda:
 		-project WebDriverAgent.xcodeproj \
 		-scheme WebDriverAgentRunner \
 		-destination 'id=$(IPHONE_DEVICE_ID)' \
+		PRODUCT_BUNDLE_IDENTIFIER="com.tushru2004.WebDriverAgentRunner" \
+		DEVELOPMENT_TEAM="2TF5QH3WTY" \
+		CODE_SIGN_IDENTITY="Apple Development: tushru2004@icloud.com (2TF5QH3WTY)" \
+		ALLOW_PROVISIONING_UPDATES=YES \
 		2>&1 | tail -20 || echo "If you see 'Certificate not trusted', go to Settings → General → VPN & Device Management and trust it"
 
 test-vpn:
