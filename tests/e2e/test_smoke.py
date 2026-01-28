@@ -56,6 +56,7 @@ class TestSmoke:
 
         # Set longer timeout for session creation (WDA can take a while)
         options.set_capability("appium:newCommandTimeout", 300)  # 5 min command timeout
+        options.set_capability("appium:commandTimeouts", {"default": int(os.getenv("APPIUM_CMD_TIMEOUT_MS", "60000"))})
 
         # Configure HTTP client with longer timeout for session creation
         driver = webdriver.Remote(

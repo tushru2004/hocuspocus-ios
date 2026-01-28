@@ -151,13 +151,18 @@ def ios_driver(e2e_run_id: str):
     xcode_signing_id = os.getenv("IOS_XCODE_SIGNING_ID", "").strip()
     if xcode_signing_id:
         options.set_capability("appium:xcodeSigningId", xcode_signing_id)
+    derived_data_path = os.getenv("IOS_DERIVED_DATA_PATH", "/Users/tushru2004/Library/Developer/Xcode/DerivedData/WebDriverAgent-cxhqcjzswqsqtaasegmlirothnxg")
+    if derived_data_path:
+        options.set_capability("appium:derivedDataPath", derived_data_path)
     options.set_capability("appium:updatedWDABundleId", os.getenv("IOS_WDA_BUNDLE_ID", "com.tushru2004.WebDriverAgentRunner"))
-    use_prebuilt = os.getenv("USE_PREBUILT_WDA", "true").lower() == "true"
+    use_prebuilt = os.getenv("USE_PREBUILT_WDA", "false").lower() == "true"  # Disable to use installed WDA
     options.set_capability("appium:usePrebuiltWDA", use_prebuilt)
     options.set_capability(
         "appium:allowProvisioningUpdates",
-        os.getenv("IOS_ALLOW_PROVISIONING_UPDATES", "true").lower() == "true",
+        os.getenv("IOS_ALLOW_PROVISIONING_UPDATES", "false").lower() == "true",  # Disabled to avoid rebuild
     )
+    # Keep WDA installed on the device so the iPhone can show the trust prompt
+    options.set_capability("appium:skipUninstall", True)
     options.set_capability(
         "appium:allowProvisioningDeviceRegistration",
         os.getenv("IOS_ALLOW_DEVICE_REGISTRATION", "true").lower() == "true",
@@ -171,6 +176,7 @@ def ios_driver(e2e_run_id: str):
     options.set_capability("appium:wdaLaunchTimeout", 600000)  # 10 minutes
     options.set_capability("appium:wdaConnectionTimeout", 240000)  # 4 minutes
     options.set_capability("appium:newCommandTimeout", 300)  # 5 minutes
+    options.set_capability("appium:commandTimeouts", {"default": int(os.getenv("APPIUM_CMD_TIMEOUT_MS", "60000"))})
 
     driver = webdriver.Remote(
         command_executor="http://127.0.0.1:4723",

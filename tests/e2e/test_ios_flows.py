@@ -163,6 +163,7 @@ class TestIOSProxyFlows:
             options.set_capability("appium:useXctestrunFile", False)
             options.set_capability("appium:wdaLaunchTimeout", 120000)
             options.set_capability("appium:wdaConnectionTimeout", 120000)
+            options.set_capability("appium:commandTimeouts", {"default": int(os.getenv("APPIUM_CMD_TIMEOUT_MS", "60000"))})
             options.set_capability("appium:clearSystemFiles", True)
 
             # Set default safe location for real device (doesn't work on iOS 17+, but doesn't hurt)

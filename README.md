@@ -100,13 +100,28 @@ WebDriverAgent (WDA) must be built and installed on your iPhone. **This is the m
    - Click the device dropdown next to the scheme selector
    - Choose your connected iPhone
 
-5. **Build and run WebDriverAgent:**
-   - Press **Cmd+U** (Product → Test)
-   - This builds WDA and installs it on your iPhone
+5. **Build and install WebDriverAgent on iPhone:**
+   
+   The easiest way is via command line (from MacBook Air):
+   ```bash
+   cd ~/code/hocuspocus-ios
+   make install-wda
+   ```
+   
+   Or manually:
+   ```bash
+   cd ~/.appium/node_modules/appium-xcuitest-driver/node_modules/appium-webdriveragent
+   xcodebuild test-without-building \
+     -project WebDriverAgent.xcodeproj \
+     -scheme WebDriverAgentRunner \
+     -destination 'id=00008020-0004695621DA002E'
+   ```
+   
+   > **Note:** Using `xcodebuild test-without-building` (not just `build` or Xcode's Run button) is required to actually install the app on the device.
 
 6. **Trust the developer certificate on iPhone:**
    - Go to Settings → General → VPN & Device Management
-   - Find your developer certificate and tap "Trust"
+   - Find your developer certificate (e.g., "Apple Development: tushru2004@icloud.com") and tap "Trust"
 
 ## Test Configuration
 
